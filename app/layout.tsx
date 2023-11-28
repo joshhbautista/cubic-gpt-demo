@@ -1,11 +1,11 @@
 import './globals.css';
 
 import { Analytics } from '@vercel/analytics/react';
-import Nav from './nav';
+import Nav from '../components/nav';
 import { Suspense } from 'react';
 
 export const metadata = {
-  title: 'Cubic GPT Patient Dashboard Demo',
+  title: 'Cubic GPT Demo',
   description:
     'A GPT-powered Patient Analyzer configured with Next.js, Postgres, NextAuth, Tailwind CSS, TypeScript, ESLint, and Prettier.'
 };
