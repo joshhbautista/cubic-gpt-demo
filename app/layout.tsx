@@ -3,6 +3,7 @@ import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
 import Nav from '@/components/nav';
 import { Suspense } from 'react';
+import { TooltipProvider } from '@/components/ui/tooltip';
 
 export const metadata = {
   title: 'Cubic GPT Demo',
@@ -21,7 +22,7 @@ export default function RootLayout({
         <Suspense>
           <Nav />
         </Suspense>
-        {children}
+        <TooltipProvider>{children}</TooltipProvider>
         <Analytics />
       </body>
     </html>

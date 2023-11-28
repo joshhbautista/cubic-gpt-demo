@@ -32,8 +32,8 @@ export default async function IndexPage({ searchParams }: IndexPageProps) {
 
   return (
     <main className="p-4 md:p-10 mx-auto max-w-screen-2xl">
-      <Grid numItems={3} className="gap-6">
-        <Col numColSpan={2}>
+      <Grid numItems={5} className="gap-6">
+        <Col numColSpan={3}>
           <Title>Cases</Title>
           <Text className="mb-6">
             A table displaying all of the cases in the database.
@@ -45,11 +45,15 @@ export default async function IndexPage({ searchParams }: IndexPageProps) {
             <CasesTable cases={cases} />
           </Card>
         </Col>
-        <Col>
+        <Col numColSpan={2}>
           <Title>AI Assistants + Chat</Title>
           <Text className="mb-6">Chat with a specialized AI Assistant.</Text>
           <AssistantSelect activeAssistantId={assistantId} />
-          <Chat assistantId={assistantId} />
+          <div className="flex flex-col min-h-screen">
+            <main className="flex flex-col flex-1 bg-muted/50">
+              <Chat assistantId={assistantId} />
+            </main>
+          </div>
         </Col>
       </Grid>
     </main>
