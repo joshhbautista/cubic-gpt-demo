@@ -1,18 +1,28 @@
-export const ASSISTANTS = [
+import { ASSISTANT_NAMES } from "./types";
+
+export const ASSISTANTS: {
+  id: string;
+  name: ASSISTANT_NAMES;
+}[] = [
   {
-    id: '1',
-    name: 'Administrator'
+    id: 'asst_F51hdzctFpAuSTtGV035oxp8',
+    name: ASSISTANT_NAMES.Administrator
   },
   {
-    id: '2',
-    name: 'Pharmacist'
+    id: 'asst_dxk0KQrmlEUDKNg5UUlPOjE3',
+    name: ASSISTANT_NAMES.Pharmacist
   },
   {
-    id: '3',
-    name: 'Clinical Coordinator'
+    id: 'asst_0H3DvSJpfuWgCINXTaxmJ9eV',
+    name: ASSISTANT_NAMES.ClinicalCoordinator
   },
   {
-    id: '4',
-    name: 'Medication Access Coordinator'
+    id: 'asst_xdFQQkbsruu09RUGtnKHToB9',
+    name: ASSISTANT_NAMES.MedicalAccessCoordinator
   }
 ];
+
+export const ASSISTANT_ID_TO_NAME = ASSISTANTS.reduce((acc, asst) => {
+  acc[asst.id] = asst.name;
+  return acc;
+}, {} as Record<string, ASSISTANT_NAMES>);

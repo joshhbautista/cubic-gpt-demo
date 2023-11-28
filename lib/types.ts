@@ -32,3 +32,10 @@ export interface Case {
 }
 
 export interface CaseWithPatientStatus extends Case, Patient, Status {};
+
+export enum ASSISTANT_NAMES {
+  Administrator = 'Administrator',
+  Pharmacist = 'Pharmacist',
+  ClinicalCoordinator = 'Clinical Coordinator',
+  MedicalAccessCoordinator = 'Medical Access Coordinator',
+}

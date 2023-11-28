@@ -23,7 +23,7 @@ export default function CasesTable({ cases }: CasesTableProps) {
           <TableHeaderCell>Name</TableHeaderCell>
           <TableHeaderCell>Date of Birth</TableHeaderCell>
           <TableHeaderCell>Drug Requested</TableHeaderCell>
-          <TableHeaderCell>Status</TableHeaderCell>
+          <TableHeaderCell>Disease</TableHeaderCell>
         </TableRow>
       </TableHead>
       <TableBody>
@@ -34,7 +34,7 @@ export default function CasesTable({ cases }: CasesTableProps) {
             name,
             date_of_birth,
             drug_requested,
-            label: status_label
+            disease
           }) => (
             <TableRow key={patient_id}>
               <TableCell>{name}</TableCell>
@@ -43,7 +43,7 @@ export default function CasesTable({ cases }: CasesTableProps) {
               </TableCell>
               <TableCell>{drug_requested}</TableCell>
               <TableCell>
-                <Badge>{status_label}</Badge>
+                <Badge>{disease}</Badge>
               </TableCell>
               <TableCell>
                 <Button size="sm" tooltip="Click to view case information">

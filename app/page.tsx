@@ -5,6 +5,7 @@ import CasesTable from '../components/table';
 import { CaseWithPatientStatus, Status } from '../lib/types';
 import Tabs from './tabs';
 import { AssistantSelect } from '../components/select';
+import Chat from '../components/chat';
 
 interface IndexPageProps {
   searchParams: { q: string; statusId: string; assistantId: string };
@@ -13,7 +14,8 @@ interface IndexPageProps {
 export default async function IndexPage({ searchParams }: IndexPageProps) {
   const search = searchParams.q ?? '';
   const statusId = searchParams.statusId ?? '1';
-  const assistantId = searchParams.assistantId ?? '1';
+  const assistantId =
+    searchParams.assistantId ?? 'asst_F51hdzctFpAuSTtGV035oxp8';
 
   const { rows: cases } = await sql<CaseWithPatientStatus>`
     SELECT *
@@ -47,6 +49,7 @@ export default async function IndexPage({ searchParams }: IndexPageProps) {
           <Title>AI Assistants + Chat</Title>
           <Text className="mb-6">Chat with a specialized AI Assistant.</Text>
           <AssistantSelect activeAssistantId={assistantId} />
+          <Chat assistantId={assistantId} />
         </Col>
       </Grid>
     </main>
