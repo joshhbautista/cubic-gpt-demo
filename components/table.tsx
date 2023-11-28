@@ -9,7 +9,7 @@ import {
   Badge,
   Button
 } from '@tremor/react';
-import { CaseWithPatientStatus } from '../lib/types';
+import { CaseWithPatientStatus } from '@/lib/types';
 
 interface CasesTableProps {
   cases: CaseWithPatientStatus[];

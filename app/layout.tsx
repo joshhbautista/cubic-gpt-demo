@@ -1,7 +1,7 @@
 import './globals.css';
 
 import { Analytics } from '@vercel/analytics/react';
-import Nav from '../components/nav';
+import Nav from '@/components/nav';
 import { Suspense } from 'react';
 
 export const metadata = {

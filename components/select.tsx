@@ -3,7 +3,7 @@
 import React, { useTransition } from 'react';
 import { Select, SelectItem } from '@tremor/react';
 import { usePathname, useRouter } from 'next/navigation';
-import { ASSISTANTS } from '../lib/config';
+import { ASSISTANTS } from '@/lib/config';
 
 interface AssistantSelectProps {
   activeAssistantId: string;

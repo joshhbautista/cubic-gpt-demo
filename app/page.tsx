@@ -1,11 +1,11 @@
 import { sql } from '@vercel/postgres';
 import { Card, Col, Grid, Text, Title } from '@tremor/react';
+import { CaseWithPatientStatus, Status } from '@/lib/types';
+import Chat from '@/components/chat';
+import { AssistantSelect } from '@/components/select';
+import CasesTable from '@/components/table';
 import Search from './search';
-import CasesTable from '../components/table';
-import { CaseWithPatientStatus, Status } from '../lib/types';
 import Tabs from './tabs';
-import { AssistantSelect } from '../components/select';
-import Chat from '../components/chat';
 
 interface IndexPageProps {
   searchParams: { q: string; statusId: string; assistantId: string };

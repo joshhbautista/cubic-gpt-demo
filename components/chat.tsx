@@ -1,9 +1,9 @@
 'use client';
 
-import { Message, experimental_useAssistant as useAssistant } from 'ai/react';
 import { useEffect, useRef } from 'react';
-import { ASSISTANT_NAMES } from '../lib/types';
-import { ASSISTANT_ID_TO_NAME } from '../lib/config';
+import { Message, experimental_useAssistant as useAssistant } from 'ai/react';
+import { ASSISTANT_NAMES } from '@/lib/types';
+import { ASSISTANT_ID_TO_NAME } from '@/lib/config';
 
 const roleToColorMap: Record<Message['role'], string> = {
   system: 'red',
