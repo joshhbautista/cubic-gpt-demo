@@ -1,6 +1,5 @@
 import {
   Badge,
-  Bold,
   Callout,
   Card,
   Col,
@@ -11,6 +10,15 @@ import {
   Title
 } from '@tremor/react';
 import { CaseDetailsModel } from '@/lib/types';
+
+const statusIdToBadgeMap: Record<number, string> = {
+  1: 'neutral',
+  2: 'success',
+  3: 'warning',
+  4: 'error',
+  5: 'info',
+  6: 'primary'
+};
 
 interface CaseDetailsProps {
   caseDetails: CaseDetailsModel;
@@ -33,7 +41,12 @@ export default function CaseDetails({ caseDetails }: CaseDetailsProps) {
                   <Title>{caseDetails.name}</Title>
                   <Subtitle>#{caseDetails.case_id}</Subtitle>
                 </Flex>
-                <Badge size="xl">{caseDetails.decision}</Badge>
+                <Badge
+                  color={statusIdToBadgeMap[caseDetails.status_id]}
+                  size="lg"
+                >
+                  {caseDetails.label}
+                </Badge>
               </Flex>
               <Flex
                 flexDirection="col"
@@ -73,6 +86,7 @@ export default function CaseDetails({ caseDetails }: CaseDetailsProps) {
             <Card>
               <div className="h-auto">
                 <Title>Details</Title>
+                <Badge size="lg">{caseDetails.decision}</Badge>
                 <Text>{caseDetails.details}</Text>
               </div>
             </Card>

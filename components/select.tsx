@@ -22,6 +22,9 @@ export function AssistantSelect({ activeAssistantId }: AssistantSelectProps) {
     startTransition(() => {
       replace(`${pathname}?${params.toString()}`);
     });
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   }
 
   return (

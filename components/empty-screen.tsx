@@ -12,54 +12,50 @@ const assistantToMessagesMap: Record<
       message: `What are my main tasks for today?`
     },
     {
-      heading: 'System Performance Report',
-      message: `Generate a report on the system's performance for this week.`
+      heading: 'Cases with Requested Drug',
+      message: `Show me all the cases that are requesting drug Tramadol.`
     },
     {
-      heading: 'User Activity Overview',
-      message: `Show me an overview of user activity for the past month.`
+      heading: 'Case Overview by Status',
+      message: `Show me all the cases that are Awaiting CA Reply.`
     }
   ],
   [ASSISTANT_NAMES.Pharmacist]: [
     {
-      heading: 'Drug Interaction Query',
-      message: `Check for interactions between drug A and drug B.`
+      heading: 'Overview of Today’s Tasks',
+      message: `What are my main tasks for today?`
+    },
+    {
+      heading: 'Make Decisions on Cases',
+      message: `Log case ID 43459 as Approved.`
     },
     {
       heading: 'Medication Dosage Confirmation',
-      message: `What is the recommended dosage for medication X for a patient with condition Y?`
+      message: `What is the recommended dosage for medication X for a patient in case ID 00001?`
     },
     {
       heading: 'Patient Medication History',
-      message: `Provide the medication history for patient ID 12345.`
+      message: `Provide the medication history for case ID 00001.`
     }
   ],
   [ASSISTANT_NAMES.ClinicalCoordinator]: [
     {
-      heading: 'Case Prioritization',
-      message: `Which cases should I prioritize today?`
+      heading: 'Prepare Draft Communication',
+      message: `Can you prepare a draft communication for case ID #00001?`
     },
     {
-      heading: 'Clinical Trial Eligibility',
-      message: `Is patient ID 67890 eligible for the upcoming clinical trial?`
-    },
-    {
-      heading: 'Patient Follow-Up Schedule',
-      message: `Create a follow-up schedule for patients discharged last week.`
+      heading: 'Query by Decision',
+      message: `Can you list all the case ID's with decision 'Approved'?`
     }
   ],
   [ASSISTANT_NAMES.MedicalAccessCoordinator]: [
     {
-      heading: 'Patient Assistance Program Eligibility',
-      message: `Check if patient ID 54321 is eligible for any patient assistance programs.`
+      heading: 'Retrieve Final Decision',
+      message: `What's the final decision for case ID #91933?`
     },
     {
-      heading: 'Insurance Claim Status',
-      message: `What is the status of the insurance claim for patient ID 98765?`
-    },
-    {
-      heading: 'Medication Access Barriers',
-      message: `Identify potential barriers to medication access for patient ID 11223.`
+      heading: 'Query by Decision',
+      message: `Can you list all the case ID's with decision 'Approved'?`
     }
   ]
 };
@@ -89,7 +85,7 @@ export function EmptyScreen({ assistantId }: EmptyScreenProps) {
           You can start a conversation here or try the following examples:
         </p>
         <div className="mt-4 flex flex-col items-start space-y-2">
-          {assistantToMessagesMap[ASSISTANT_ID_TO_NAME[assistantId]].map(
+          {assistantToMessagesMap[ASSISTANT_ID_TO_NAME[assistantId]]?.map(
             (message, index) => (
               <Flex key={index} flexDirection="col" alignItems="start">
                 <Bold className="h-auto p-0 text-base">{message.heading}</Bold>
