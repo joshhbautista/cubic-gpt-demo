@@ -1,4 +1,4 @@
-export interface Patient {
+export interface PatientModel {
   patient_id: number;
   name: string;
   date_of_birth: string;
@@ -7,9 +7,21 @@ export interface Patient {
   medical_record: string;
 }
 
+export interface Patient {
+  patientId: number;
+  name: string;
+  dateOfBirth: string;
+  gender: string;
+  disease: string;
+  medicalHistory: string;
+  preferredCommunicationMethod: string;
+  phoneNumber: string;
+  address: string;
+}
+
 type Gender = 'Male' | 'Female' | 'Other';
 
-export interface Status {
+export interface StatusModel {
   status_id: number;
   label: StatusLabel;
 }
@@ -22,7 +34,7 @@ type StatusLabel =
   | 'Awaiting Exception'
   | 'Completed';
 
-export interface Case {
+export interface CaseModel {
   case_id: number;
   patient_id: number;
   status_id: number;
@@ -31,7 +43,21 @@ export interface Case {
   details: string;
 }
 
-export interface CaseDetails extends Case, Patient, Status {}
+export interface Case {
+  caseId: number;
+  patientId: number;
+  statusId: number;
+  dateSubmitted: string;
+  drugRequested: string;
+  details: string;
+  caseNotes: string;
+  decision: string;
+}
+
+export interface CaseDetailsModel
+  extends CaseModel,
+    PatientModel,
+    StatusModel {}
 
 export enum ASSISTANT_NAMES {
   Administrator = 'Administrator',

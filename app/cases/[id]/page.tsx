@@ -1,6 +1,6 @@
 import { sql } from '@vercel/postgres';
 import { Col, Grid, Text, Title } from '@tremor/react';
-import { CaseDetails as ICaseDetails } from '@/lib/types';
+import { CaseDetailsModel } from '@/lib/types';
 import Chat from '@/components/chat';
 import { AssistantSelect } from '@/components/select';
 import CaseDetails from './case-details';
@@ -19,7 +19,7 @@ export default async function CaseDetailsPage({
   const caseId = params.id;
   const assistantId =
     searchParams.assistantId ?? 'asst_F51hdzctFpAuSTtGV035oxp8';
-  const { rows } = await sql<ICaseDetails>`
+  const { rows } = await sql<CaseDetailsModel>`
     SELECT *
     FROM cases
     LEFT JOIN patients ON cases.patient_id = patients.patient_id

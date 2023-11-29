@@ -9,10 +9,10 @@ import {
   TableRow,
   Text
 } from '@tremor/react';
-import { CaseDetails } from '@/lib/types';
+import { CaseDetailsModel } from '@/lib/types';
 
 interface CasesTableProps {
-  cases: CaseDetails[];
+  cases: CaseDetailsModel[];
 }
 
 export default function CasesTable({ cases }: CasesTableProps) {

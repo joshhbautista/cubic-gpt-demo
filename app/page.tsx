@@ -1,9 +1,10 @@
 import { sql } from '@vercel/postgres';
-import { Card, Col, Grid, Text, Title } from '@tremor/react';
-import { CaseDetails, Status } from '@/lib/types';
+import { Card, Col, Flex, Grid, Text, Title } from '@tremor/react';
+import { CaseDetailsModel, StatusModel } from '@/lib/types';
 import Chat from '@/components/chat';
 import { AssistantSelect } from '@/components/select';
 import CasesTable from '@/components/table';
+import Generate from './generate';
 import Search from './search';
 import Tabs from './tabs';
 
@@ -17,7 +18,7 @@ export default async function IndexPage({ searchParams }: IndexPageProps) {
   const assistantId =
     searchParams.assistantId ?? 'asst_F51hdzctFpAuSTtGV035oxp8';
 
-  const { rows: cases } = await sql<CaseDetails>`
+  const { rows: cases } = await sql<CaseDetailsModel>`
     SELECT *
     FROM cases
     LEFT JOIN patients ON cases.patient_id = patients.patient_id
@@ -25,7 +26,7 @@ export default async function IndexPage({ searchParams }: IndexPageProps) {
     WHERE name ILIKE ${'%' + search + '%'} AND
       status.status_id = ${statusId};
   `;
-  const { rows: statuses } = await sql<Status>`
+  const { rows: statuses } = await sql<StatusModel>`
     SELECT *
     FROM status
   `;
@@ -40,7 +41,10 @@ export default async function IndexPage({ searchParams }: IndexPageProps) {
           </Text>
 
           <Tabs activeTabId={statusId} tabs={statuses} />
-          <Search />
+          <Flex className="w-full mt-6">
+            <Search />
+            <Generate />
+          </Flex>
           <Card className="mt-6">
             <CasesTable cases={cases} />
           </Card>

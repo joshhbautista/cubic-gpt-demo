@@ -2,11 +2,11 @@
 
 import React, { useTransition } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { Status } from '@/lib/types';
+import { StatusModel } from '@/lib/types';
 import { classNames } from '@/lib/utils';
 
 interface TabsProps {
-  tabs: Status[];
+  tabs: StatusModel[];
   activeTabId: string;
 }
 

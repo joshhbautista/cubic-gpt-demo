@@ -1,8 +1,8 @@
-import { Card, Title, Text, Grid, Col, Callout, Flex } from '@tremor/react';
-import { CaseDetails } from '@/lib/types';
+import { Callout, Card, Col, Flex, Grid, Text, Title } from '@tremor/react';
+import { CaseDetailsModel } from '@/lib/types';
 
 interface CaseDetailsProps {
-  caseDetails: CaseDetails;
+  caseDetails: CaseDetailsModel;
 }
 
 export default function CaseDetails({ caseDetails }: CaseDetailsProps) {
