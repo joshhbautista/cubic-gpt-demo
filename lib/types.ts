@@ -4,7 +4,10 @@ export interface PatientModel {
   date_of_birth: string;
   gender: Gender;
   disease: string;
-  medical_record: string;
+  medical_history: string;
+  preferred_communication_method: PreferredCommunicationMethod;
+  phone_number: string;
+  address: string;
 }
 
 export interface Patient {
@@ -20,6 +23,7 @@ export interface Patient {
 }
 
 type Gender = 'Male' | 'Female' | 'Other';
+type PreferredCommunicationMethod = 'email' | 'phone';
 
 export interface StatusModel {
   status_id: number;
@@ -41,6 +45,8 @@ export interface CaseModel {
   date_submitted: string;
   drug_requested: string;
   details: string;
+  case_notes: string;
+  decision: string;
 }
 
 export interface Case {

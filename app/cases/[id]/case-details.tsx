@@ -1,4 +1,15 @@
-import { Callout, Card, Col, Flex, Grid, Text, Title } from '@tremor/react';
+import {
+  Badge,
+  Bold,
+  Callout,
+  Card,
+  Col,
+  Flex,
+  Grid,
+  Subtitle,
+  Text,
+  Title
+} from '@tremor/react';
 import { CaseDetailsModel } from '@/lib/types';
 
 interface CaseDetailsProps {
@@ -15,10 +26,44 @@ export default function CaseDetails({ caseDetails }: CaseDetailsProps) {
               flexDirection="col"
               alignItems="start"
               justifyContent="start"
-              className="h-60 gap-3"
+              className="h-auto gap-3"
             >
-              <Title>{caseDetails.name}</Title>
-              <Callout title="Case Details">{caseDetails.details}</Callout>
+              <Flex alignItems="start" className="h-auto gap-3">
+                <Flex justifyContent="start" className="gap-3">
+                  <Title>{caseDetails.name}</Title>
+                  <Subtitle>#{caseDetails.case_id}</Subtitle>
+                </Flex>
+                <Badge size="xl">{caseDetails.decision}</Badge>
+              </Flex>
+              <Flex
+                flexDirection="col"
+                alignItems="start"
+                justifyContent="start"
+                className="gap-1"
+              >
+                <Text>
+                  {new Date(caseDetails.date_of_birth).toLocaleDateString(
+                    'en-us',
+                    {
+                      weekday: 'long',
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    }
+                  )}
+                </Text>
+                <Text>{caseDetails.address}</Text>
+                <Text>{caseDetails.phone_number}</Text>
+              </Flex>
+              <Title>Case Notes</Title>
+              {JSON.parse(caseDetails.case_notes).map(
+                (note: { date: string; note: string }, index: number) => (
+                  <Card key={index}>
+                    <Text>{note.date}</Text>
+                    <Text>{note.note}</Text>
+                  </Card>
+                )
+              )}
             </Flex>
           </Card>
         </Col>
@@ -26,19 +71,25 @@ export default function CaseDetails({ caseDetails }: CaseDetailsProps) {
         <Col numColSpanLg={2}>
           <div className="space-y-6">
             <Card>
-              <div className="h-24">
-                <Title>Disease</Title>
-                <Text>{caseDetails.disease}</Text>
+              <div className="h-auto">
+                <Title>Details</Title>
+                <Text>{caseDetails.details}</Text>
               </div>
             </Card>
             <Card>
-              <div className="h-24">
+              <div className="h-auto">
+                <Title>Disease</Title>
+                <Text>{caseDetails.disease}</Text>
+                <Callout className="mt-3" title="Medical History">
+                  {caseDetails.medical_history}
+                </Callout>
+              </div>
+            </Card>
+            <Card>
+              <div className="h-12">
                 <Title>Drug Requested</Title>
                 <Text>{caseDetails.drug_requested}</Text>
               </div>
-            </Card>
-            <Card>
-              <div className="h-24" />
             </Card>
           </div>
         </Col>
