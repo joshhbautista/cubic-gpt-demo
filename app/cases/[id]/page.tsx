@@ -5,8 +5,6 @@ import Chat from '@/components/chat';
 import { AssistantSelect } from '@/components/select';
 import CaseDetails from './case-details';
 
-export const fetchCache = 'force-no-store';
-
 interface CaseDetailsPageProps {
   params: {
     id: string;
