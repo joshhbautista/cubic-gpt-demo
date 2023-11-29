@@ -1,87 +1,87 @@
-// import { NextResponse } from 'next/server';
-// import { createClient } from '@vercel/postgres';
+import { NextResponse } from 'next/server';
+import { createClient } from '@vercel/postgres';
 // import { faker } from '@faker-js/faker';
-// import { Case, Patient } from '@/lib/types';
+import { Case, Patient } from '@/lib/types';
 
-// // IMPORTANT! Set the runtime to edge
-// export const runtime = 'edge';
+// IMPORTANT! Set the runtime to edge
+export const runtime = 'edge';
 
-// export async function POST(req: Request) {
-//   // Parse the request body
-//   const input: {
-//     num: number | null;
-//   } = await req.json();
+export async function POST(req: Request) {
+  // Parse the request body
+  const input: {
+    num: number | null;
+  } = await req.json();
 
-//   const numberToGenerate = input.num ?? 1;
+  const numberToGenerate = input.num ?? 1;
 
-//   const patients: Patient[] = [];
-//   const cases: Case[] = [];
+  const patients: Patient[] = [];
+  const cases: Case[] = [];
 
-//   for (let i = 1; i <= numberToGenerate; i++) {
-//     const patient = generatePatient();
-//     patients.push(patient);
+  for (let i = 1; i <= numberToGenerate; i++) {
+    // const patient = generatePatient();
+    // patients.push(patient);
 
-//     const drugCase = generateCase(patient);
-//     cases.push(drugCase);
-//   }
+    // const drugCase = generateCase(patient);
+    // cases.push(drugCase);
+  }
 
-//   const client = createClient();
-//   await client.connect();
+  const client = createClient();
+  await client.connect();
 
-//   const insertPatient = async (patient: Patient) => {
-//     const query =
-//       'INSERT INTO Patients (patient_id, name, date_of_birth, gender, disease, medical_history, preferred_communication_method, phone_number, address) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)';
-//     const values = [
-//       patient.patientId,
-//       patient.name,
-//       patient.dateOfBirth,
-//       patient.gender,
-//       patient.disease,
-//       patient.medicalHistory,
-//       patient.preferredCommunicationMethod,
-//       patient.phoneNumber,
-//       patient.address
-//     ];
-//     await client.query(query, values);
-//   };
+  const insertPatient = async (patient: Patient) => {
+    const query =
+      'INSERT INTO Patients (patient_id, name, date_of_birth, gender, disease, medical_history, preferred_communication_method, phone_number, address) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)';
+    const values = [
+      patient.patientId,
+      patient.name,
+      patient.dateOfBirth,
+      patient.gender,
+      patient.disease,
+      patient.medicalHistory,
+      patient.preferredCommunicationMethod,
+      patient.phoneNumber,
+      patient.address
+    ];
+    await client.query(query, values);
+  };
 
-//   // Function to insert a case
-//   const insertCase = async (caseData: Case) => {
-//     const query =
-//       'INSERT INTO Cases (case_id, patient_id, status_id, date_submitted, drug_requested, details, case_notes, decision) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)';
-//     const values = [
-//       caseData.caseId,
-//       caseData.patientId,
-//       caseData.statusId,
-//       caseData.dateSubmitted,
-//       caseData.drugRequested,
-//       caseData.details,
-//       JSON.stringify(caseData.caseNotes),
-//       caseData.decision
-//     ];
-//     await client.query(query, values);
-//   };
+  // Function to insert a case
+  const insertCase = async (caseData: Case) => {
+    const query =
+      'INSERT INTO Cases (case_id, patient_id, status_id, date_submitted, drug_requested, details, case_notes, decision) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)';
+    const values = [
+      caseData.caseId,
+      caseData.patientId,
+      caseData.statusId,
+      caseData.dateSubmitted,
+      caseData.drugRequested,
+      caseData.details,
+      JSON.stringify(caseData.caseNotes),
+      caseData.decision
+    ];
+    await client.query(query, values);
+  };
 
-//   const insertData = async () => {
-//     for (const patient of patients) {
-//       await insertPatient(patient);
-//     }
+  const insertData = async () => {
+    for (const patient of patients) {
+      await insertPatient(patient);
+    }
 
-//     for (const caseData of cases) {
-//       await insertCase(caseData);
-//     }
+    for (const caseData of cases) {
+      await insertCase(caseData);
+    }
 
-//     await client.end();
-//   };
+    await client.end();
+  };
 
-//   try {
-//     await insertData();
-//     return NextResponse.json({ message: `Data generated successfully!` });
-//   } catch (error) {
-//     console.error(error);
-//     return NextResponse.json({ message: `Error generating data: ${error}` });
-//   }
-// }
+  try {
+    await insertData();
+    return NextResponse.json({ message: `Data generated successfully!` });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ message: `Error generating data: ${error}` });
+  }
+}
 
 // const diseasesAndDrugs: Record<string, string[]> = {
 //   Diabetes: ['Metformin', 'Insulin'],
