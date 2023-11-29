@@ -22,7 +22,6 @@ export default function CasesTable({ cases }: CasesTableProps) {
         <TableRow>
           <TableHeaderCell>ID</TableHeaderCell>
           <TableHeaderCell>Name</TableHeaderCell>
-          <TableHeaderCell>Date of Birth</TableHeaderCell>
           <TableHeaderCell>Drug Requested</TableHeaderCell>
           <TableHeaderCell>Disease</TableHeaderCell>
         </TableRow>
@@ -40,9 +39,6 @@ export default function CasesTable({ cases }: CasesTableProps) {
             <TableRow key={patient_id}>
               <TableCell>{case_id}</TableCell>
               <TableCell>{name}</TableCell>
-              <TableCell>
-                <Text>{new Date(date_of_birth).toLocaleDateString()}</Text>
-              </TableCell>
               <TableCell>{drug_requested}</TableCell>
               <TableCell>
                 <Badge>{disease}</Badge>
