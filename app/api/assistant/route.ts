@@ -76,7 +76,6 @@ export async function POST(req: Request) {
                       const { rows } = await sql`
                       SELECT * FROM cases
                       LEFT JOIN patients ON cases.patient_id = patients.patient_id
-                      LEFT JOIN status ON cases.status_id = status.status_id
                       WHERE status_id = 1
                      `;
 
