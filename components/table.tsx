@@ -1,13 +1,13 @@
 import {
+  Badge,
+  Button,
   Table,
-  TableHead,
-  TableRow,
-  TableHeaderCell,
   TableBody,
   TableCell,
-  Text,
-  Badge,
-  Button
+  TableHead,
+  TableHeaderCell,
+  TableRow,
+  Text
 } from '@tremor/react';
 import { CaseDetails } from '@/lib/types';
 

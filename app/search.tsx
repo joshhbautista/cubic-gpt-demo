@@ -1,8 +1,8 @@
 'use client';
 
 import { useTransition } from 'react';
-import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import { usePathname, useRouter } from 'next/navigation';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 
 export default function Search({ disabled }: { disabled?: boolean }) {
   const { replace } = useRouter();

@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useTransition } from 'react';
-import { Select, SelectItem } from '@tremor/react';
 import { usePathname, useRouter } from 'next/navigation';
+import { Select, SelectItem } from '@tremor/react';
 import { ASSISTANTS } from '@/lib/config';
 
 interface AssistantSelectProps {

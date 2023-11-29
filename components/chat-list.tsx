@@ -1,5 +1,4 @@
 import { type Message } from 'ai';
-
 import { Separator } from '@/components/ui/separator';
 import { ChatMessage } from '@/components/chat-message';
 

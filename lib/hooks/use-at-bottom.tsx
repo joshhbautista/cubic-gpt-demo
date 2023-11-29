@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export function useAtBottom(offset = 0) {
   const [isAtBottom, setIsAtBottom] = useState(false);

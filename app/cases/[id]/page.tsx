@@ -1,8 +1,8 @@
 import { sql } from '@vercel/postgres';
-import { Title, Text, Grid, Col } from '@tremor/react';
+import { Col, Grid, Text, Title } from '@tremor/react';
 import { CaseDetails as ICaseDetails } from '@/lib/types';
-import { AssistantSelect } from '@/components/select';
 import Chat from '@/components/chat';
+import { AssistantSelect } from '@/components/select';
 import CaseDetails from './case-details';
 
 interface CaseDetailsPageProps {

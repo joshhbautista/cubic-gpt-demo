@@ -1,6 +1,6 @@
+import { Bold, Flex, Subtitle } from '@tremor/react';
 import { ASSISTANT_ID_TO_NAME } from '@/lib/config';
 import { ASSISTANT_NAMES } from '@/lib/types';
-import { Bold, Flex, Subtitle } from '@tremor/react';
 
 const assistantToMessagesMap: Record<
   ASSISTANT_NAMES,

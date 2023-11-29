@@ -1,7 +1,7 @@
-import { useRef, useEffect } from 'react';
-import Textarea from 'react-textarea-autosize';
-import { UseAssistantHelpers } from 'ai/react';
+import { useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
+import { UseAssistantHelpers } from 'ai/react';
+import Textarea from 'react-textarea-autosize';
 import { useEnterSubmit } from '@/lib/hooks/use-enter-submit';
 import { cn } from '@/lib/utils';
 import { Button, buttonVariants } from '@/components/ui/button';

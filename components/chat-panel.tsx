@@ -1,6 +1,6 @@
 import { type UseAssistantHelpers } from 'ai/react';
-import { PromptForm } from '@/components/prompt-form';
 import { ButtonScrollToBottom } from '@/components/button-scroll-to-bottom';
+import { PromptForm } from '@/components/prompt-form';
 
 export interface ChatPanelProps
   extends Pick<

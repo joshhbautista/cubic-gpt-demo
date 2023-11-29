@@ -1,9 +1,8 @@
-import './globals.css';
-
-import { Analytics } from '@vercel/analytics/react';
-import Nav from './nav';
 import { Suspense } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { TooltipProvider } from '@/components/ui/tooltip';
+import './globals.css';
+import Nav from './nav';
 
 export const metadata = {
   title: 'Cubic GPT Demo',

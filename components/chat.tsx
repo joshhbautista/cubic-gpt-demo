@@ -4,8 +4,8 @@ import { experimental_useAssistant as useAssistant } from 'ai/react';
 import { cn } from '@/lib/utils';
 import { ChatList } from '@/components/chat-list';
 import { ChatPanel } from '@/components/chat-panel';
-import { EmptyScreen } from '@/components/empty-screen';
 import { ChatScrollAnchor } from '@/components/chat-scroll-anchor';
+import { EmptyScreen } from '@/components/empty-screen';
 
 interface ChatProps extends React.ComponentProps<'div'> {
   assistantId: string;
