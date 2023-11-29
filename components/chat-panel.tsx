@@ -9,11 +9,13 @@ export interface ChatPanelProps
   > {
   isLoading: boolean;
   assistantId: string;
+  caseId?: string;
 }
 
 export function ChatPanel({
   isLoading,
   assistantId,
+  caseId,
   submitMessage,
   input,
   handleInputChange
@@ -29,6 +31,7 @@ export function ChatPanel({
             input={input}
             isLoading={isLoading}
             assistantId={assistantId}
+            caseId={caseId}
           />
         </div>
       </div>

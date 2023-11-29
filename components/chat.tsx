@@ -9,9 +9,10 @@ import { ChatScrollAnchor } from '@/components/chat-scroll-anchor';
 
 interface ChatProps extends React.ComponentProps<'div'> {
   assistantId: string;
+  caseId?: string;
 }
 
-export default function Chat({ assistantId, className }: ChatProps) {
+export default function Chat({ assistantId, caseId, className }: ChatProps) {
   const { status, messages, input, submitMessage, handleInputChange, error } =
     useAssistant({
       api: '/api/assistant'
@@ -43,6 +44,7 @@ export default function Chat({ assistantId, className }: ChatProps) {
       <ChatPanel
         isLoading={status === 'in_progress'}
         assistantId={assistantId}
+        caseId={caseId}
         submitMessage={submitMessage}
         handleInputChange={handleInputChange}
         input={input}

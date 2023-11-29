@@ -1,4 +1,4 @@
-import { ASSISTANT_NAMES } from "./types";
+import { ASSISTANT_NAMES } from './types';
 
 export const ASSISTANTS: {
   id: string;
@@ -22,7 +22,10 @@ export const ASSISTANTS: {
   }
 ];
 
-export const ASSISTANT_ID_TO_NAME = ASSISTANTS.reduce((acc, asst) => {
-  acc[asst.id] = asst.name;
-  return acc;
-}, {} as Record<string, ASSISTANT_NAMES>);
+export const ASSISTANT_ID_TO_NAME = ASSISTANTS.reduce(
+  (acc, asst) => {
+    acc[asst.id] = asst.name;
+    return acc;
+  },
+  {} as Record<string, ASSISTANT_NAMES>
+);

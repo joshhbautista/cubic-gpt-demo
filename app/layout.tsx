@@ -1,7 +1,7 @@
 import './globals.css';
 
 import { Analytics } from '@vercel/analytics/react';
-import Nav from '@/components/nav';
+import Nav from './nav';
 import { Suspense } from 'react';
 import { TooltipProvider } from '@/components/ui/tooltip';
 

@@ -16,7 +16,7 @@ export async function POST(req: Request) {
   const input: {
     threadId: string | null;
     message: string;
-    data: { assistantId: string };
+    data: { caseId: string; assistantId: string };
   } = await req.json();
 
   // Create a thread if needed
@@ -68,6 +68,8 @@ export async function POST(req: Request) {
                   const client = createClient();
                   await client.connect();
 
+                  const caseId = input.data.caseId;
+
                   switch (toolCall.function.name) {
                     case 'get_pending_cases': {
                       const { rows } = await sql`
@@ -86,6 +88,7 @@ export async function POST(req: Request) {
                       const { rows } = await sql`
                       SELECT * FROM patients
                       LEFT JOIN cases ON patients.patient_id = cases.patient_id
+                      LEFT JOIN status ON cases.status_id = status.status_id
                       WHERE name ILIKE ${'%' + parameters.search_term + '%'} OR
                       disease ILIKE ${'%' + parameters.search_term + '%'};
                      `;
@@ -112,21 +115,21 @@ export async function POST(req: Request) {
                       };
                     }
 
-                    // case 'get_patient_history': {
+                    case 'get_case_details': {
+                      const { rows } = await sql`
+                        SELECT * FROM cases
+                        LEFT JOIN patients ON cases.patient_id = patients.patient_id
+                        LEFT JOIN status ON cases.status_id = status.status_id
+                        WHERE case_id = ${
+                          !!caseId ? caseId : parameters.case_id
+                        };
+                      `;
 
-                    //   return {
-                    //     tool_call_id: toolCall.id,
-                    //     output: 'patient history',
-                    //   };
-                    // }
-
-                    // case 'get_case_details': {
-
-                    //   return {
-                    //     tool_call_id: toolCall.id,
-                    //     output: 'case details',
-                    //   };
-                    // }
+                      return {
+                        tool_call_id: toolCall.id,
+                        output: JSON.stringify(rows)
+                      };
+                    }
 
                     default:
                       throw new Error(

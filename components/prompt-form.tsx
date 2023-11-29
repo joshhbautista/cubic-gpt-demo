@@ -19,6 +19,7 @@ export interface PromptProps
   > {
   isLoading: boolean;
   assistantId: string;
+  caseId?: string;
 }
 
 export function PromptForm({
@@ -26,7 +27,8 @@ export function PromptForm({
   handleInputChange,
   input,
   isLoading,
-  assistantId
+  assistantId,
+  caseId
 }: PromptProps) {
   const { formRef, onKeyDown } = useEnterSubmit();
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -40,7 +42,9 @@ export function PromptForm({
 
   return (
     <form
-      onSubmit={(e) => submitMessage(e, { data: { assistantId: assistantId } })}
+      onSubmit={(e) =>
+        submitMessage(e, { data: { assistantId, caseId: caseId ?? '' } })
+      }
       ref={formRef}
     >
       <div className="relative flex max-h-60 w-full grow flex-col overflow-hidden bg-background px-8 sm:rounded-md sm:border sm:px-12">

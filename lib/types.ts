@@ -31,11 +31,11 @@ export interface Case {
   details: string;
 }
 
-export interface CaseWithPatientStatus extends Case, Patient, Status {};
+export interface CaseDetails extends Case, Patient, Status {}
 
 export enum ASSISTANT_NAMES {
   Administrator = 'Administrator',
   Pharmacist = 'Pharmacist',
   ClinicalCoordinator = 'Clinical Coordinator',
-  MedicalAccessCoordinator = 'Medical Access Coordinator',
+  MedicalAccessCoordinator = 'Medical Access Coordinator'
 }
