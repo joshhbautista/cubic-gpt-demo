@@ -43,7 +43,7 @@ export default async function CaseDetailsPage({
           <Title>AI Assistants + Chat</Title>
           <Text className="mb-6">Chat with a specialized AI Assistant.</Text>
           <AssistantSelect activeAssistantId={assistantId} />
-          <div className="flex flex-col min-h-screen">
+          <div className="flex flex-col">
             <main className="flex flex-col flex-1 bg-muted/50">
               <Chat assistantId={assistantId} caseId={caseId} />
             </main>
