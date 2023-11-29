@@ -1,11 +1,10 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@vercel/postgres';
-import { Faker, en_CA, faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker';
 import { Case, Patient } from '@/lib/types';
 
 // IMPORTANT! Set the runtime to edge
 export const runtime = 'edge';
-const customFaker = new Faker({ locale: [en_CA] });
 
 export async function POST(req: Request) {
   // Parse the request body
@@ -104,7 +103,7 @@ const diseasesAndDrugs: Record<string, string[]> = {
 };
 
 const generateMedicalHistory = (disease: string): string => {
-  const yearDiagnosed = customFaker.date
+  const yearDiagnosed = faker.date
     .past({ years: 20, refDate: new Date() })
     .getFullYear();
   let history = `Diagnosed with ${disease} in ${yearDiagnosed}.`;
@@ -129,55 +128,50 @@ const generateMedicalHistory = (disease: string): string => {
 };
 
 const generatePatient = (): Patient => {
-  const disease = customFaker.helpers.arrayElement(
-    Object.keys(diseasesAndDrugs)
-  );
+  const disease = faker.helpers.arrayElement(Object.keys(diseasesAndDrugs));
   return {
     patientId: Number(faker.string.numeric({ length: { min: 5, max: 5 } })),
     name: faker.person.fullName(),
-    dateOfBirth: customFaker.date
+    dateOfBirth: faker.date
       .past({ years: 60, refDate: new Date('2000-01-01') })
       .toISOString()
       .split('T')[0],
-    gender: customFaker.helpers.arrayElement(['Male', 'Female', 'Other']),
+    gender: faker.helpers.arrayElement(['Male', 'Female', 'Other']),
     disease,
     medicalHistory: generateMedicalHistory(disease),
-    preferredCommunicationMethod: customFaker.helpers.arrayElement([
+    preferredCommunicationMethod: faker.helpers.arrayElement([
       'email',
       'phone'
     ]),
-    phoneNumber: customFaker.phone.number(),
+    phoneNumber: faker.phone.number(),
     address: faker.location.streetAddress(true)
   };
 };
 
 const generateCase = (patient: Patient): Case => {
   const medications = diseasesAndDrugs[patient.disease];
-  const drugRequested = customFaker.helpers.arrayElement(medications);
-  const statusId = customFaker.helpers.arrayElement([1, 2, 3, 4, 5, 6]); // Assuming 1, 2, 3 are valid status IDs
+  const drugRequested = faker.helpers.arrayElement(medications);
+  const statusId = faker.helpers.arrayElement([1, 2, 3, 4, 5, 6]); // Assuming 1, 2, 3 are valid status IDs
   const decision =
     statusId === 6
-      ? customFaker.helpers.arrayElement(['Approved', 'Denied'])
+      ? faker.helpers.arrayElement(['Approved', 'Denied'])
       : 'In Progress';
 
   return {
     caseId: Number(faker.string.numeric({ length: { min: 5, max: 5 } })),
     patientId: patient.patientId,
     statusId,
-    dateSubmitted: customFaker.date
-      .recent({ days: 90 })
-      .toISOString()
-      .split('T')[0],
+    dateSubmitted: faker.date.recent({ days: 90 }).toISOString().split('T')[0],
     drugRequested,
     details: `Request for ${drugRequested}, due to ${patient.disease}.`,
     caseNotes: JSON.stringify([
       {
         note: `Patient reported good tolerance to ${drugRequested}.`,
-        date: customFaker.date.recent({ days: 180 }).toISOString().split('T')[0]
+        date: faker.date.recent({ days: 180 }).toISOString().split('T')[0]
       },
       {
         note: 'Follow-up required in 3 months.',
-        date: customFaker.date.recent({ days: 90 }).toISOString().split('T')[0]
+        date: faker.date.recent({ days: 90 }).toISOString().split('T')[0]
       }
     ]),
     decision
