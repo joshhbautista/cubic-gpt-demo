@@ -8,6 +8,8 @@ import Generate from './generate';
 import Search from './search';
 import Tabs from './tabs';
 
+export const fetchCache = 'force-no-store';
+
 interface IndexPageProps {
   searchParams: { q: string; statusId: string; assistantId: string };
 }
