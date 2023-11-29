@@ -43,7 +43,7 @@ export default async function IndexPage({ searchParams }: IndexPageProps) {
           <Tabs activeTabId={statusId} tabs={statuses} />
           <Flex className="w-full mt-6">
             <Search />
-            <Generate />
+            {/* <Generate /> */}
           </Flex>
           <Card className="mt-6">
             <CasesTable cases={cases} />
