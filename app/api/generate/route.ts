@@ -96,7 +96,7 @@ const diseasesAndDrugs: Record<string, string[]> = {
   Allergies: ['Cetirizine', 'Loratadine'],
   Migraine: ['Sumatriptan', 'Propranolol'],
   'Heart Disease': ['Aspirin', 'Metoprolol'],
-  'Gastroesophageal Reflux Disease (GERD)': ['Omeprazole', 'Esomeprazole'],
+  GERD: ['Omeprazole', 'Esomeprazole'],
   Insomnia: ['Zolpidem', 'Temazepam'],
   Osteoporosis: ['Alendronate', 'Calcium Supplements'],
   Epilepsy: ['Levetiracetam', 'Carbamazepine']
